@@ -155,7 +155,6 @@ body {
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
 }
 
-/* Ensure track is visible */
 .slider::-webkit-slider-runnable-track,
 .slider::-moz-range-track {
     width: 100%;
@@ -165,7 +164,6 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Ensure thumb is properly styled */
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 35px;
@@ -287,7 +285,6 @@ h2 {
     text-shadow: 2px 2px 4px rgba(255, 71, 87, 0.3);
 }
 
-
 .celebration-text {
     font-size: 3em;
     color: #ff4757;
@@ -329,7 +326,7 @@ h2 {
 </head>
 <body>
     <div class="floating-elements">
-        </div>
+    </div>
 
     <div class="container">
         <h1 id="valentineTitle">اية صديقتي العزيزة...</h1>
@@ -378,11 +375,11 @@ h2 {
 
     <script>
 // ===============================================
-// 1. محتوى ملف config.js (تم إصلاح الخطأ البرمجي)
+// 1. محتوى ملف config.js
 // ===============================================
 
 const CONFIG = {
-    valentineName: "اية", // تم استخدام "اية" بدلاً من "aya" لتناسب النصوص العربية
+    valentineName: "اية",
     pageTitle: "رسالة صغيرة من مختار لاية ❤️",
 
     floatingEmojis: {
@@ -395,7 +392,6 @@ const CONFIG = {
             text: "💌\nاية، في رسالة مخصوص ليكي النهاردة عارف انها بدري اسبوع بس حبيت اكون اول حد يقولك كل سنة وانتي طيبة... عارفة ليه اليوم ده مميز؟",
             yesBtn: "قول يا مختار 😍",
             noBtn: "مش عارفة، احكيلي 😅",
-            // تم إصلاح النص هنا ليكون أكثر وضوحاً
             secretAnswer: "لأن النهاردة اليوم اللي لازم أقولك فيه قد إيه إنتي غالية عندي ❤️، ويلا نبدأ أول مهمة بسيطة كده 😉"
         },
         second: {
@@ -404,7 +400,6 @@ const CONFIG = {
             nextBtn: "تمام، نكمل بقى 🎁"
         },
         third: {
-            // تم إصلاح النص ليكون قوياً ومناسباً للوعد
             text: "✨ تمام كده! بس قبل ما نكمل، عايز أوعدك وعد صغير: إن كل مرة تزعلِي، هكون أول واحد يضحكك 💖\nتقبلي الوعد ده يا اية؟ 😘",
             yesBtn: "أكيد بقبل 😚",
             noBtn: "ممم فكرني بيه تاني 😂"
@@ -428,8 +423,6 @@ const CONFIG = {
         emojis: "🎁💋💖🤗💝🎈🎉❤️"
     },
     
-    // تم نقل الأقسام التالية وإضافة فواصل (,) لربطها بـ CONFIG
-    // ألوان وستايل ناعم ومرح
     colors: {
         backgroundStart: "#ffd6e0",
         backgroundEnd: "#f9c5d1",
@@ -438,7 +431,6 @@ const CONFIG = {
         textColor: "#b03a69"
     },
 
-    // إعدادات الحركات والمؤثرات
     animations: {
         floatDuration: "14s",
         floatDistance: "55px",
@@ -446,7 +438,6 @@ const CONFIG = {
         heartExplosionSize: 1.7
     },
 
-    // موسيقى خلفية جاهزة
     music: {
         enabled: true,
         autoplay: true,
@@ -455,7 +446,7 @@ const CONFIG = {
         stopText: "🔇 سكوت البطة 😂",
         volume: 0.5
     }
-}; // إغلاق وحيد وصحيح لكائن CONFIG
+};
 
 window.VALENTINE_CONFIG = CONFIG;
 
@@ -463,46 +454,38 @@ window.VALENTINE_CONFIG = CONFIG;
 // ===============================================
 // 2. محتوى ملف theme.js
 // ===============================================
-// Update CSS variables from configuration
 function applyTheme() {
     const config = window.VALENTINE_CONFIG;
     const root = document.documentElement;
 
-    // Apply colors
     root.style.setProperty('--background-color-1', config.colors.backgroundStart);
     root.style.setProperty('--background-color-2', config.colors.backgroundEnd);
     root.style.setProperty('--button-color', config.colors.buttonBackground);
     root.style.setProperty('--button-hover', config.colors.buttonHover);
     root.style.setProperty('--text-color', config.colors.textColor);
 
-    // Apply animation settings
     root.style.setProperty('--float-duration', config.animations.floatDuration);
     root.style.setProperty('--float-distance', config.animations.floatDistance);
     root.style.setProperty('--bounce-speed', config.animations.bounceSpeed);
     root.style.setProperty('--heart-explosion-size', config.animations.heartExplosionSize);
 }
 
-// Apply theme when the page loads
 window.addEventListener('DOMContentLoaded', applyTheme);
 
 
 // ===============================================
-// 3. محتوى ملف script.js (مع حذف دالة moveButton)
+// 3. محتوى ملف script.js
 // ===============================================
-// Initialize configuration
 const config = window.VALENTINE_CONFIG;
 
-// Validate configuration
 function validateConfig() {
     const warnings = [];
 
-    // Check required fields
     if (!config.valentineName) {
-        warnings.push("Valentine's name is not set! Using default.");
-        config.valentineName = "my frind";
+        warnings.push("Name is not set! Using default.");
+        config.valentineName = "my friend";
     }
 
-    // Validate colors
     const isValidHex = (hex) => /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex);
     Object.entries(config.colors).forEach(([key, value]) => {
         if (!isValidHex(value)) {
@@ -511,7 +494,6 @@ function validateConfig() {
         }
     });
 
-    // Validate animation values
     if (parseFloat(config.animations.floatDuration) < 5) {
         warnings.push("Float duration too short! Setting to 5s minimum.");
         config.animations.floatDuration = "5s";
@@ -522,14 +504,12 @@ function validateConfig() {
         config.animations.heartExplosionSize = 1.5;
     }
 
-    // Log warnings if any
     if (warnings.length > 0) {
         console.warn("⚠️ Configuration Warnings:");
         warnings.forEach(warning => console.warn("- " + warning));
     }
 }
 
-// Default color values
 function getDefaultColor(key) {
     const defaults = {
         backgroundStart: "#ffafbd",
@@ -541,45 +521,34 @@ function getDefaultColor(key) {
     return defaults[key];
 }
 
-// Set page title
 document.title = config.pageTitle;
 
-// Initialize the page content when DOM is loaded
 window.addEventListener('DOMContentLoaded', () => {
-    // Validate configuration first
     validateConfig();
 
-    // Set texts from config
-    document.getElementById('valentineTitle').textContent = `${config.valentineName}, my love...`;
+    // تم التعديل هنا لـ my friend
+    document.getElementById('valentineTitle').textContent = `${config.valentineName}, my friend...`;
     
-    // Set first question texts
     document.getElementById('question1Text').textContent = config.questions.first.text;
     document.getElementById('yesBtn1').textContent = config.questions.first.yesBtn;
     document.getElementById('noBtn1').textContent = config.questions.first.noBtn;
     document.getElementById('secretAnswerBtn').textContent = config.questions.first.secretAnswer;
     
-    // Set second question texts
     document.getElementById('question2Text').textContent = config.questions.second.text;
     document.getElementById('startText').textContent = config.questions.second.startText;
     document.getElementById('nextBtn').textContent = config.questions.second.nextBtn;
     
-    // Set third question texts
     document.getElementById('question3Text').textContent = config.questions.third.text;
     document.getElementById('yesBtn3').textContent = config.questions.third.yesBtn;
     document.getElementById('noBtn3').textContent = config.questions.third.noBtn;
 
-    // Create initial floating elements
     createFloatingElements();
-
-    // Setup music player
     setupMusicPlayer();
 });
 
-// Create floating hearts and bears
 function createFloatingElements() {
     const container = document.querySelector('.floating-elements');
     
-    // Create hearts
     config.floatingEmojis.hearts.forEach(heart => {
         const div = document.createElement('div');
         div.className = 'heart';
@@ -588,7 +557,6 @@ function createFloatingElements() {
         container.appendChild(div);
     });
 
-    // Create bears
     config.floatingEmojis.bears.forEach(bear => {
         const div = document.createElement('div');
         div.className = 'bear';
@@ -598,20 +566,17 @@ function createFloatingElements() {
     });
 }
 
-// Set random position for floating elements
 function setRandomPosition(element) {
     element.style.left = Math.random() * 100 + 'vw';
     element.style.animationDelay = Math.random() * 5 + 's';
     element.style.animationDuration = 10 + Math.random() * 20 + 's';
 }
 
-// Function to show next question
 function showNextQuestion(questionNumber) {
     document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
     document.getElementById(`question${questionNumber}`).classList.remove('hidden');
 }
 
-// Love meter functionality
 const loveMeter = document.getElementById('loveMeter');
 const loveValue = document.getElementById('loveValue');
 const extraLove = document.getElementById('extraLove');
@@ -633,7 +598,6 @@ loveMeter.addEventListener('input', () => {
         loveMeter.style.width = `calc(100% + ${extraWidth}px)`;
         loveMeter.style.transition = 'width 0.3s';
         
-        // Show different messages based on the value
         if (value >= 5000) {
             extraLove.classList.add('super-love');
             extraLove.textContent = config.loveMessages.extreme;
@@ -651,26 +615,21 @@ loveMeter.addEventListener('input', () => {
     }
 });
 
-// Initialize love meter
 window.addEventListener('DOMContentLoaded', setInitialPosition);
 window.addEventListener('load', setInitialPosition);
 
-// Celebration function
 function celebrate() {
     document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
     const celebration = document.getElementById('celebration');
     celebration.classList.remove('hidden');
     
-    // Set celebration messages
     document.getElementById('celebrationTitle').textContent = config.celebration.title;
     document.getElementById('celebrationMessage').textContent = config.celebration.message;
     document.getElementById('celebrationEmojis').textContent = config.celebration.emojis;
     
-    // Create heart explosion effect
     createHeartExplosion();
 }
 
-// Create heart explosion animation
 function createHeartExplosion() {
     for (let i = 0; i < 50; i++) {
         const heart = document.createElement('div');
@@ -682,25 +641,21 @@ function createHeartExplosion() {
     }
 }
 
-// Music Player Setup
 function setupMusicPlayer() {
     const musicControls = document.getElementById('musicControls');
     const musicToggle = document.getElementById('musicToggle');
     const bgMusic = document.getElementById('bgMusic');
     const musicSource = document.getElementById('musicSource');
 
-    // Only show controls if music is enabled in config
     if (!config.music.enabled) {
         musicControls.style.display = 'none';
         return;
     }
 
-    // Set music source and volume
     musicSource.src = config.music.musicUrl;
     bgMusic.volume = config.music.volume || 0.5;
     bgMusic.load();
 
-    // Try autoplay if enabled
     if (config.music.autoplay) {
         const playPromise = bgMusic.play();
         if (playPromise !== undefined) {
@@ -711,7 +666,6 @@ function setupMusicPlayer() {
         }
     }
 
-    // Toggle music on button click
     musicToggle.addEventListener('click', () => {
         if (bgMusic.paused) {
             bgMusic.play();
